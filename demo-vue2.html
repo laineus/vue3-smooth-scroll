@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue3-smooth-scroll</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="./dist/vue-smooth-scroll.min.js"></script>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+Vue.use(VueSmoothScroll.default)
+Vue.component('scroll-demo', {
+  template: `
+    <div>
+      <section id="first">
+        <a href="#second" v-smooth-scroll>scrollDown</a>
+      </section>
+      <section id="second">
+        <a href="#first" v-smooth-scroll>scrollUp</a>
+      </section>
+    </div>`
+})
+const app = new Vue({
+  el: '#app',
+  template: `<scroll-demo />`
+})
+</script>
+
+<style>
+section {
+  height: 100vh;
+}
+</style>
+
+</body>
+</html>
