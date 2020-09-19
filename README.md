@@ -10,14 +10,17 @@ For simple use-cases, the native [`scroll-behavior` CSS property](https://develo
 
 ## Features
 
+- Works on Vue 3
 - Directive and programmatic API with global and local config overrides
 - SSR
 - Smooth, non-blocking animation using `requestAnimationFrame` (with fallback)
 - Y-axis or vertical scrolling
 - Specific scroll containers
-- 1.3kB gzipped, 2.9kB min
+- 1.4kB gzipped, 3.1kB min
 
 ## Installation
+
+### npm:
 
 ``` bash
 npm install --save vue3-smooth-scroll
@@ -26,31 +29,12 @@ npm install --save vue3-smooth-scroll
 ``` js
 import { createApp } from 'vue'
 import VueSmoothScroll from 'vue3-smooth-scroll'
+
 const app = createApp(...)
 app.use(VueSmoothScroll)
 ```
 
-## Usage
-
-### Directive
-``` html
-<a href="#sec-3" v-smooth-scroll>Section 3</a>
-
-<section id="sec-3"></section>
-```
-
-### Programmatic
-
-``` js
-const myEl = this.$refs.myEl || this.$el || document.getElementById(...)
-
-this.$smoothScroll({
-  scrollTo: myEl,
-  hash: '#sampleHash'  // required if updateHistory is true
-})
-```
-
-### Direct in `<script>`
+### CDN:
 
 ``` html
 <body>
@@ -63,32 +47,50 @@ this.$smoothScroll({
 </body>
 ```
 
+## Usage
+
+### Directive:
+
+``` html
+<a href="#sec-3" v-smooth-scroll>Section 3</a>
+
+<section id="sec-3"></section>
+```
+
+### Programmatic:
+
+``` js
+const myEl = this.$refs.myEl || this.$el || document.getElementById(...)
+
+this.$smoothScroll({
+  scrollTo: myEl,
+  hash: '#sampleHash' // required if updateHistory is true
+})
+```
 
 ## Custom options
 
-### Defaults
+### Defaults:
+
 ``` js
 {
   duration: 500,       // animation duration in ms
   offset: 0,           // offset in px from scroll element, can be positive or negative
   container: '',       // selector string or Element for scroll container, default is window
-  updateHistory: true  // whether to push hash to history
+  updateHistory: true, // whether to push hash to history
   easingFunction: null // gives the ability to provide a custom easing function `t => ...`
                        // (see https://gist.github.com/gre/1650294 for examples)
                        // if nothing is given, it will defaults to `easeInOutCubic`
 }
 ```
 
-### Global
+### Global:
 
 ``` js
-import { createApp } from 'vue'
-import VueSmoothScroll from 'vue3-smooth-scroll'
-
 const app = createApp(...)
 app.use(VueSmoothScroll, {
   duration: 400,
-  updateHistory: false,
+  updateHistory: false
 })
 ```
 
@@ -102,7 +104,7 @@ app.use(VueSmoothScroll, {
 </div>
 ```
 
-### Programmatic
+### Programmatic:
 
 ``` js
 this.$smoothScroll({
