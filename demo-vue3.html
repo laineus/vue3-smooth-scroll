@@ -18,12 +18,17 @@ const app = Vue.createApp({
 app.use(VueSmoothScroll.default)
 app.component('scroll-demo', {
   template: `
-    <section id="first">
-      <a href="#second" v-smooth-scroll>scrollDown</a>
+    <section id="first" ref="first">
+      <a href="#second" v-smooth-scroll">scrollDown</a>
     </section>
-    <section id="second">
-      <a href="#first" v-smooth-scroll>scrollUp</a>
-    </section>`
+    <section id="second" ref="second">
+      <a href="#first" @click="toFirst">scrollUp</a>
+    </section>`,
+  methods: {
+    toFirst () {
+      this.$smoothScroll({ scrollTo: this.$refs.first })
+    }
+  }
 })
 app.mount('#app')
 </script>

@@ -16,13 +16,18 @@ Vue.use(VueSmoothScroll.default)
 Vue.component('scroll-demo', {
   template: `
     <div>
-      <section id="first">
+      <section id="first" ref="first">
         <a href="#second" v-smooth-scroll>scrollDown</a>
       </section>
-      <section id="second">
-        <a href="#first" v-smooth-scroll>scrollUp</a>
+      <section id="second" ref="second">
+        <a href="#first" @click="toFirst">scrollUp</a>
       </section>
-    </div>`
+    </div>`,
+  methods: {
+    toFirst () {
+      this.$smoothScroll({ scrollTo: this.$refs.first })
+    }
+  }
 })
 const app = new Vue({
   el: '#app',
