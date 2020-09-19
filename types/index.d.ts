@@ -12,6 +12,6 @@ export interface SmoothScrollOptions {
   hash?: string; // required if updateHistory is true
 }
 
-declare const Vue2SmoothScroll: PluginFunction<SmoothScrollOptions>;
+declare const Vue3SmoothScroll: PluginFunction<SmoothScrollOptions>;
 
-export default Vue2SmoothScroll;
+export default Vue3SmoothScroll;
