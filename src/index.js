@@ -63,7 +63,7 @@ const VueSmoothScroll = {
         // That means no smoothscroll on IE9 and below.
         if (typeof window !== 'object' || window.pageYOffset === undefined) return
 
-        const resolvedArgs = Object.assign(globalConfig, binding.value)
+        const resolvedArgs = Object.assign({}, globalConfig, binding.value)
         if (typeof resolvedArgs.container === 'string') {
           resolvedArgs.container = document.querySelector(resolvedArgs.container)
         }
@@ -88,7 +88,7 @@ const VueSmoothScroll = {
 
     const prototype = isOldVersion ? app.prototype : app.config.globalProperties
     prototype.$smoothScroll = args => {
-      const resolvedArgs = Object.assign(globalConfig, args)
+      const resolvedArgs = Object.assign({}, globalConfig, args)
       return smoothScroll(resolvedArgs)
     }
   }
