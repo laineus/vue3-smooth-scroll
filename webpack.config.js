@@ -1,8 +1,6 @@
-const path = require('path');
+const path = require('path')
 
-function resolve(dir) {
-  return path.resolve(__dirname, dir);
-}
+const resolve = dir => path.resolve(__dirname, dir)
 
 module.exports = {
   entry: './src/index.js',
@@ -22,10 +20,16 @@ module.exports = {
           resolve('src')
         ],
         loader: 'babel-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: '/node_modules/',
+        loader: 'eslint-loader',
+        enforce: 'pre'
       }
     ]
   },
   resolve: {
-    extensions: ['js'],
+    extensions: ['js']
   }
-};
+}
