@@ -63,7 +63,7 @@ app.use(VueSmoothScroll)
 const myEl = this.$refs.myEl || this.$el || document.getElementById(...)
 
 this.$smoothScroll({
-  scrollTo: myEl,
+  scrollTo: myEl, // scrollTo is also allowed to be number
   hash: '#sampleHash' // required if updateHistory is true
 })
 ```

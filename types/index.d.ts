@@ -4,7 +4,7 @@ import Vue, { PluginFunction } from "vue";
 import "./vue-injections";
 
 export interface SmoothScrollOptions {
-  scrollTo: Element;
+  scrollTo: Element | number;
   duration?: number;
   offset?: number;
   container?: Element | string;

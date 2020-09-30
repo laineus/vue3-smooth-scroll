@@ -28,8 +28,9 @@ const smoothScroll = ({ scrollTo, offset, duration, container, updateHistory, ha
   // THIS IS A BUG FROM THE BROWSERS.
   if (updateHistory && window.history.pushState && location.hash !== hash) window.history.pushState('', '', hash)
 
+  const isNumber = typeof scrollTo === 'number'
   const startPoint = container.scrollTop || window.pageYOffset
-  const end = getTop(scrollTo, startPoint) + offset
+  const end = (isNumber ? scrollTo : getTop(scrollTo, startPoint)) + offset
   const easeFn = typeof easingFunction === 'function' ? easingFunction : easeInOutCubic
 
   const clock = Date.now()
@@ -42,7 +43,7 @@ const smoothScroll = ({ scrollTo, offset, duration, container, updateHistory, ha
 
     if (scrolling) {
       requestAnimationFrame(step)
-    } else if (updateHistory) {
+    } else if (updateHistory && !isNumber) {
       location.replace('#' + scrollTo.id)
       // This will cause the :target to be activated.
     }

@@ -19,7 +19,7 @@ app.use(VueSmoothScroll.default)
 app.component('scroll-demo', {
   template: `
     <section id="first" ref="first">
-      <a href="#second" v-smooth-scroll">scrollDown</a>
+      <a href="#second" v-smooth-scroll>scrollDown</a>
     </section>
     <section id="second" ref="second">
       <a href="#first" @click="toFirst">scrollUp</a>
