@@ -10,6 +10,7 @@ module.exports = {
     filename: 'vue-smooth-scroll.min.js',
     library: 'VueSmoothScroll',
     libraryTarget: 'umd',
+    libraryExport: 'default',
     globalObject: 'this'
   },
   module: {

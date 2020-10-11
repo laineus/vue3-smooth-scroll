@@ -42,7 +42,7 @@ app.use(VueSmoothScroll)
   <script src="https://unpkg.com/vue3-smooth-scroll"></script>
   <script>
     const app = Vue.createApp(...)
-    app.use(VueSmoothScroll.default)
+    app.use(VueSmoothScroll)
   </script>
 </body>
 ```

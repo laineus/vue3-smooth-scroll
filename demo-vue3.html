@@ -15,7 +15,7 @@
 const app = Vue.createApp({
   template: `<scroll-demo />`
 })
-app.use(VueSmoothScroll.default)
+app.use(VueSmoothScroll)
 app.component('scroll-demo', {
   template: `
     <section id="first" ref="first">
