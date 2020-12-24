@@ -24,9 +24,18 @@ app.component('scroll-demo', {
     <section id="second" ref="second">
       <a href="#first" @click="toFirst">scrollUp</a>
     </section>`,
-  methods: {
-    toFirst () {
-      this.$smoothScroll({ scrollTo: this.$refs.first })
+  setup () {
+    const smoothScroll = Vue.inject('smoothScroll')
+    const refs = Vue.reactive({
+      first: null,
+      second: null
+    })
+    const toFirst = () => {
+      smoothScroll({ scrollTo: refs.first })
+    }
+    return {
+      ...Vue.toRefs(refs),
+      toFirst
     }
   }
 })

@@ -60,12 +60,32 @@ app.use(VueSmoothScroll)
 ### Programmatic:
 
 ``` js
-const myEl = this.$refs.myEl || this.$el || document.getElementById(...)
+methods: {
+  scrollToMyEl () {
+    const myEl = this.$refs.myEl || this.$el || document.getElementById(...)
 
-this.$smoothScroll({
-  scrollTo: myEl, // scrollTo is also allowed to be number
-  hash: '#sampleHash' // required if updateHistory is true
-})
+    this.$smoothScroll({
+      scrollTo: myEl, // scrollTo is also allowed to be number
+      hash: '#sampleHash' // required if updateHistory is true
+    })
+  }
+}
+```
+
+### Programmatic (in Vue3 setup): 
+
+``` js
+import { inject, ref } from 'vue'
+setup () {
+  const myEl = ref(null)
+  const smoothScroll = inject('smoothScroll')
+  const scrollToMyEl = () => {
+    smoothScroll({
+      scrollTo: myEl.value,
+      hash: '#sampleHash'
+    })
+  }
+}
 ```
 
 ## Custom options
@@ -109,6 +129,17 @@ app.use(VueSmoothScroll, {
 ``` js
 this.$smoothScroll({
   scrollTo: this.$refs.myEl,
+  duration: 1000,
+  offset: -50,
+})
+```
+
+### Programmatic (in Vue3 setup):
+
+``` js
+const smoothScroll = Vue.inject('smoothScroll')
+smoothScroll({
+  scrollTo: refs.myEl,
   duration: 1000,
   offset: -50,
 })
