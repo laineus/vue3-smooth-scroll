@@ -87,11 +87,13 @@ const VueSmoothScroll = {
       }
     })
 
-    const prototype = isOldVersion ? app.prototype : app.config.globalProperties
-    prototype.$smoothScroll = args => {
+    const resolvedSmoothScroll = args => {
       const resolvedArgs = Object.assign({}, globalConfig, args)
       return smoothScroll(resolvedArgs)
     }
+    const prototype = isOldVersion ? app.prototype : app.config.globalProperties
+    prototype.$smoothScroll = resolvedSmoothScroll
+    if (!isOldVersion) app.provide('smoothScroll', resolvedSmoothScroll)
   }
 }
 
