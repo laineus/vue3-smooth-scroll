@@ -1,8 +1,8 @@
 # Vue3 Smooth Scroll
 
-[![Vue 3.x](https://img.shields.io/badge/Vue-3.x-brightgreen.svg)](https://vuejs.org/v2/guide/)
-[![npm](https://img.shields.io/npm/v/vue3-smooth-scroll.svg)](https://www.npmjs.com/package/vue3-smooth-scroll)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/laineus/vue3-smooth-scroll/blob/master/LICENSE)
+[![Vue 3.x](https://img.shields.io/badge/Vue-3.x-green.svg?style=for-the-badge)](https://vuejs.org/v2/guide/)
+[![npm](https://img.shields.io/npm/v/vue3-smooth-scroll.svg?style=for-the-badge)](https://www.npmjs.com/package/vue3-smooth-scroll)
+[![license](https://img.shields.io/github/license/laineus/vue3-smooth-scroll.svg?style=for-the-badge&color=blue)](https://github.com/laineus/vue3-smooth-scroll/blob/master/LICENSE)
 
 Lightweight Vue plugin for smooth-scrolling extended from [vue2-smooth-scroll](https://github.com/Yuliang-Lee/vue2-smooth-scroll).
 
