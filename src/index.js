@@ -1,5 +1,5 @@
 // We use requestAnimationFrame to be called by the browser before every repaint
-const requestAnimationFrame = window.requestAnimationFrame || (fn => window.setTimeout(fn, 16))
+let requestAnimationFrame
 
 // ease-in-out function @see https://gist.github.com/gre/1650294
 const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
@@ -23,6 +23,10 @@ const getDefaultConfig = () => {
 const smoothScrollCtx = Symbol('smoothScrollCtx')
 
 const smoothScroll = ({ scrollTo, offset, duration, container, updateHistory, hash, easingFunction }) => {
+  if (!requestAnimationFrame) {
+    requestAnimationFrame = window.requestAnimationFrame || (fn => window.setTimeout(fn, 16))
+  }
+
   // Using the history api to solve issue: back doesn't work
   // most browser don't update :target when the history api is used:
   // THIS IS A BUG FROM THE BROWSERS.
@@ -56,7 +60,7 @@ const smoothScroll = ({ scrollTo, offset, duration, container, updateHistory, ha
 const VueSmoothScroll = {
   install (app, config) {
     const isOldVersion = !app.version.startsWith('3')
-    const globalConfig = config ? Object.assign(getDefaultConfig(), config) : getDefaultConfig()
+    const getGlobalConfig = () => config ? Object.assign(getDefaultConfig(), config) : getDefaultConfig()
     app.directive('smooth-scroll', {
       [isOldVersion ? 'inserted' : 'mounted'] (el, binding, vnode) {
         // Do not initialize smoothScroll when running server side, handle it in client
@@ -64,7 +68,7 @@ const VueSmoothScroll = {
         // That means no smoothscroll on IE9 and below.
         if (typeof window !== 'object' || window.pageYOffset === undefined) return
 
-        const resolvedArgs = Object.assign({}, globalConfig, binding.value)
+        const resolvedArgs = Object.assign(getGlobalConfig(), binding.value)
         if (typeof resolvedArgs.container === 'string') {
           resolvedArgs.container = document.querySelector(resolvedArgs.container)
         }
@@ -88,7 +92,7 @@ const VueSmoothScroll = {
     })
 
     const resolvedSmoothScroll = args => {
-      const resolvedArgs = Object.assign({}, globalConfig, args)
+      const resolvedArgs = Object.assign(getGlobalConfig(), args)
       return smoothScroll(resolvedArgs)
     }
     const prototype = isOldVersion ? app.prototype : app.config.globalProperties
